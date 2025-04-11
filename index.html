@@ -43,16 +43,8 @@
     .cursor-btn:hover {
       transform: scale(1.1) rotate(2deg);
     }
-    .dark-mode {
-      background: #0f172a;
-      color: white;
-    }
-    .toggle-btn {
-      cursor: pointer;
-    }
     .glitch {
       font-weight: bold;
-      color: white;
       position: relative;
     }
     .glitch::before,
@@ -106,14 +98,13 @@
       <nav class="space-x-6 text-sm font-medium">
         <a href="#features" class="hover:text-indigo-600 transition">Fonctionnalités</a>
         <a href="#usecases" class="hover:text-indigo-600 transition">Cas d'usage</a>
-        <button class="toggle-btn ml-4 px-4 py-1 rounded bg-gray-800 text-white" onclick="toggleDarkMode()">🌙</button>
       </nav>
     </div>
   </header>
 
   <main class="pt-24 min-h-screen p-8">
     <section class="max-w-6xl mx-auto text-center">
-      <h1 class="text-6xl font-extrabold mb-6 glitch" data-text="Futura AI 🚀">Futura AI 🚀</h1>
+      <h1 class="text-6xl font-extrabold mb-6 glitch gradient-text" data-text="Futura AI 🚀">Futura AI 🚀</h1>
       <p class="text-2xl max-w-2xl mx-auto text-gray-700">
         L'IA réinventée. Une fusion de vision, de puissance et d'impact.
       </p>
@@ -163,11 +154,6 @@
       "max-glare": 0.2
     });
 
-    function toggleDarkMode() {
-      const body = document.getElementById('body');
-      body.classList.toggle('dark-mode');
-    }
-
     tsParticles.load("tsparticles", {
       fullScreen: { enable: false },
       particles: {
@@ -197,6 +183,36 @@
       "Bienvenue dans l'ère de la pensée augmentée."
     ];
     document.getElementById("ai-quote").textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+    // Commandes IA personnalisées :
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "/") {
+        let cmd = prompt("Commande AI > Tape /analyse, /init, /glow :");
+        if (cmd === "/analyse") {
+          alert("Analyse cognitive lancée... Résultat : 98.7% de corrélation contextuelle.");
+        } else if (cmd === "/init") {
+          document.body.style.filter = "hue-rotate(200deg) brightness(120%)";
+          setTimeout(() => document.body.style.filter = "none", 3000);
+        } else if (cmd === "/glow") {
+          alert("Mode IA lumineux simulé 🔮");
+        }
+      }
+    });
+
+    // Scroll holographique
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+      sections.forEach(sec => {
+        const pos = sec.getBoundingClientRect().top;
+        const win = window.innerHeight;
+        if (pos < win) {
+          sec.style.transform = "scale(1.01) skewY(-1deg) rotateX(1deg)";
+          sec.style.transition = "all 0.5s ease-out";
+        } else {
+          sec.style.transform = "none";
+        }
+      });
+    });
   </script>
 </body>
 </html>
