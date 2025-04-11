@@ -2,55 +2,235 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Billetterie Gratuite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel Vern - CV</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
-    h1 { text-align: center; }
-    form { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    input, select { width: 100%; padding: 10px; margin: 10px 0; }
-    button { width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background: #0056b3; }
-    table { width: 100%; margin-top: 30px; border-collapse: collapse; }
-    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
-    th { background: #007bff; color: white; }
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: #ffffff;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+      text-align: center;
+      z-index: 10;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #777;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #ffffff;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .card-fixe {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: #111;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 4px;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+    }
+
+    section:hover h2 {
+      border-color: #555;
+      color: #555;
+    }
+
+    section {
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      padding: 10px;
+      border-radius: 5px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s forwards;
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.2s; }
+    section:nth-of-type(2) { animation-delay: 0.4s; }
+    section:nth-of-type(3) { animation-delay: 0.6s; }
+    section:nth-of-type(4) { animation-delay: 0.8s; }
+    section:nth-of-type(5) { animation-delay: 1s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .timeline ul {
+      list-style: none;
+      padding-left: 20px;
+      border-left: 2px solid #000;
+      margin-top: 15px;
+    }
+
+    .timeline ul li {
+      position: relative;
+      padding-left: 15px;
+      margin-bottom: 20px;
+    }
+
+    .timeline ul li::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      background-color: #000;
+      border-radius: 50%;
+    }
+
+    p, li {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .contact {
+      margin-bottom: 30px;
+      text-align: center;
+      color: #555;
+    }
+
+    .photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 20px;
+      border: 2px solid #000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+      color: #000;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #555;
+    }
   </style>
 </head>
 <body>
-  <h1>Billetterie Gratuite</h1>
-  <form id="registrationForm">
-    <input type="text" id="prenom" placeholder="Prénom" required>
-    <input type="text" id="nom" placeholder="Nom" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="text" id="promo" placeholder="Promo (ex: 2025)" required>
-    <button type="submit">S'inscrire</button>
-  </form>
+  <nav>
+    <a href="#objectif">Objectif</a>
+    <a href="#experience">Expérience</a>
+    <a href="#formation">Formation</a>
+    <a href="#interets">Centres d’intérêt</a>
+    <a href="#info">Autres infos</a>
+  </nav>
+  <div class="container">
+    <div class="card-fixe">
+      Gabriel Vern<br>
+      <a href="mailto:gabriel.vern16@em-normandie.fr">Me contacter</a>
+    </div>
+    <img src="photo.jpg" alt="Photo de profil" class="photo">
+    <h1>Gabriel Vern</h1>
+    <p class="contact">Paris, France · gabriel.vern16@em-normandie.fr · <a href="https://www.linkedin.com/in/gabriel-vern/" target="_blank">LinkedIn</a></p>
 
-  <table id="attendeeList">
-    <thead>
-      <tr><th>Prénom</th><th>Nom</th><th>Email</th><th>Promo</th></tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <section id="objectif">
+      <h2>Objectif professionnel</h2>
+      <p>Actuellement à la recherche d'un stage de 2 à 3 mois en contrôle de gestion pour préparer deux stages de 6 mois lors de mon année de césure. Cette première expérience me permettra de développer des compétences clés en analyse de données, contrôle interne et gestion des risques, afin de poser des bases solides pour des missions d’audit plus complexes à l’avenir.</p>
+    </section>
 
-  <script>
-    const form = document.getElementById('registrationForm');
-    const tableBody = document.querySelector('#attendeeList tbody');
+    <section id="experience">
+      <h2>Expériences professionnelles</h2>
+      <div class="timeline">
+        <ul>
+          <li><strong><a href="https://www.linkedin.com/company/f%C3%A9d%C3%A9ration-des-%C3%A9tudiants-em-normandie/posts/?feedView=all" target="_blank">Fédération des étudiants – EM Normandie</a></strong><br>Responsable relations entreprises · Janvier 2025 – Aujourd'hui</li>
+          <li><strong><a href="https://www.instagram.com/odyssem.bde" target="_blank">Odys’sEM – BDE</a></strong><br>Responsable événements · Mars 2023 – Avril 2024</li>
+          <li><strong><a href="https://www.viva.com" target="_blank">Viva.com</a></strong><br>Stagiaire Business Developer · Mai 2023 – Juillet 2023</li>
+        </ul>
+      </div>
+    </section>
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+    <section id="formation">
+      <h2>Formation</h2>
+      <p><strong>Programme Grande École (niveau Master)</strong><br>EM Normandie Business School, Caen · 2022 – 2027</p>
+      <p><strong>Programme d’échange</strong><br>Universidad del Desarrollo, Santiago, Chili · Juillet 2024 – Décembre 2024</p>
+      <p><strong>Baccalauréat général</strong><br>Lycée Janson de Sailly, Paris · 2019 – 2022</p>
+    </section>
 
-      const prenom = document.getElementById('prenom').value;
-      const nom = document.getElementById('nom').value;
-      const email = document.getElementById('email').value;
-      const promo = document.getElementById('promo').value;
+    <section id="interets">
+      <h2>Centres d’intérêt</h2>
+      <ul>
+        <li><strong>Sport</strong> : football (10 ans), course à pied, padel (1 an)</li>
+        <li><strong>Voyages</strong> : passionné de découvertes culturelles en Amérique latine, Europe et bientôt Asie</li>
+        <li><strong>Technologie</strong> : gadgets, nouvelles applis, intelligence artificielle</li>
+      </ul>
+    </section>
 
-      const row = document.createElement('tr');
-      row.innerHTML = `<td>${prenom}</td><td>${nom}</td><td>${email}</td><td>${promo}</td>`;
-
-      tableBody.appendChild(row);
-
-      form.reset();
-    });
-  </script>
+    <section id="info">
+      <h2>Informations complémentaires</h2>
+      <ul>
+        <li><strong>Langues</strong> : Français (natif), Anglais (B2), Espagnol (B2), notions de Chinois</li>
+        <li><strong>Certifications</strong> : MOOC « Comprendre la propriété intellectuelle », PIX (compétences numériques), Google Fundamentals of Digital Marketing</li>
+      </ul>
+    </section>
+  </div>
 </body>
 </html>
