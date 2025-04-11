@@ -1,217 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Futura AI 🚀</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <script src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Billetterie Gratuite</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    .gradient-text {
-      background: linear-gradient(to right, #2563eb, #9333ea);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .glass {
-      backdrop-filter: blur(12px);
-      background-color: rgba(255, 255, 255, 0.4);
-    }
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .parallax {
-      background: linear-gradient(to right, #4f46e5, #9333ea);
-    }
-    .glow {
-      text-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
-    }
-    .neon {
-      color: #fff;
-      text-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2, 0 0 20px #8a2be2;
-    }
-    .cursor-btn {
-      transition: transform 0.3s ease;
-    }
-    .cursor-btn:hover {
-      transform: scale(1.1) rotate(2deg);
-    }
-    .glitch {
-      font-weight: bold;
-      position: relative;
-    }
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-    }
-    .glitch::before {
-      animation: glitchTop 2s infinite linear alternate-reverse;
-      color: #ff00c8;
-      top: -1px;
-    }
-    .glitch::after {
-      animation: glitchBottom 2s infinite linear alternate-reverse;
-      color: #00fff9;
-      top: 1px;
-    }
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      100% { clip: rect(0, 9999px, 100%, 0); }
-    }
-    @keyframes glitchBottom {
-      0% { clip: rect(100%, 9999px, 100%, 0); }
-      100% { clip: rect(0, 9999px, 100%, 0); }
-    }
-    #ai-quote {
-      font-size: 1.25rem;
-      margin-top: 1rem;
-      color: #4b5563;
-      animation: fadeIn 2s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+    h1 { text-align: center; }
+    form { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input, select { width: 100%; padding: 10px; margin: 10px 0; }
+    button { width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    table { width: 100%; margin-top: 30px; border-collapse: collapse; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+    th { background: #007bff; color: white; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-gray-100 to-blue-50 text-gray-800 transition-colors duration-700" id="body">
-  <div id="tsparticles" class="fixed inset-0 -z-10"></div>
+<body>
+  <h1>Billetterie Gratuite</h1>
+  <form id="registrationForm">
+    <input type="text" id="prenom" placeholder="Prénom" required>
+    <input type="text" id="nom" placeholder="Nom" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="promo" placeholder="Promo (ex: 2025)" required>
+    <button type="submit">S'inscrire</button>
+  </form>
 
-  <audio id="bg-music" autoplay loop>
-    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_91e0f5cd56.mp3" type="audio/mpeg">
-  </audio>
-
-  <header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold gradient-text">Futura AI</h1>
-      <nav class="space-x-6 text-sm font-medium">
-        <a href="#features" class="hover:text-indigo-600 transition">Fonctionnalités</a>
-        <a href="#usecases" class="hover:text-indigo-600 transition">Cas d'usage</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="pt-24 min-h-screen p-8">
-    <section class="max-w-6xl mx-auto text-center">
-      <h1 class="text-6xl font-extrabold mb-6 glitch gradient-text" data-text="Futura AI 🚀">Futura AI 🚀</h1>
-      <p class="text-2xl max-w-2xl mx-auto text-gray-700">
-        L'IA réinventée. Une fusion de vision, de puissance et d'impact.
-      </p>
-      <p id="ai-quote"></p>
-      <button class="cursor-btn mt-8 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:scale-105 transition text-lg shadow-lg">Commencer l'aventure</button>
-    </section>
-
-    <section id="features" class="grid md:grid-cols-3 gap-6 mt-24 max-w-6xl mx-auto">
-      <div class="rounded-2xl shadow-lg glass p-6 floating tilt">
-        <h3 class="text-2xl font-semibold mb-2">Automatisation intelligente</h3>
-        <p>Réduisez les tâches répétitives avec des processus alimentés par l’IA.</p>
-      </div>
-      <div class="rounded-2xl shadow-lg glass p-6 floating tilt">
-        <h3 class="text-2xl font-semibold mb-2">Prédiction avancée</h3>
-        <p>Anticipez les changements de marché avec nos modèles prédictifs puissants.</p>
-      </div>
-      <div class="rounded-2xl shadow-lg glass p-6 floating tilt">
-        <h3 class="text-2xl font-semibold mb-2">Analyse augmentée</h3>
-        <p>Transformez vos données en décisions avec des dashboards interactifs.</p>
-      </div>
-    </section>
-
-    <section id="usecases" class="mt-28 parallax py-24 text-white text-center rounded-xl shadow-2xl">
-      <h2 class="text-5xl font-extrabold mb-8 neon">Cas d'usage concrets</h2>
-      <div class="grid md:grid-cols-3 gap-8 px-6">
-        <div class="bg-white bg-opacity-10 p-6 rounded-xl">
-          <h3 class="text-2xl font-semibold mb-2">Retail</h3>
-          <p>Stocks intelligents, pricing dynamique, recommandations clients.</p>
-        </div>
-        <div class="bg-white bg-opacity-10 p-6 rounded-xl">
-          <h3 class="text-2xl font-semibold mb-2">Finance</h3>
-          <p>Analyse de risque en temps réel, détection d’anomalies, reporting intelligent.</p>
-        </div>
-        <div class="bg-white bg-opacity-10 p-6 rounded-xl">
-          <h3 class="text-2xl font-semibold mb-2">Santé</h3>
-          <p>Diagnostic assisté, gestion prédictive des lits, automatisation des tâches cliniques.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+  <table id="attendeeList">
+    <thead>
+      <tr><th>Prénom</th><th>Nom</th><th>Email</th><th>Promo</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
   <script>
-    VanillaTilt.init(document.querySelectorAll(".tilt"), {
-      max: 15,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.2
-    });
+    const form = document.getElementById('registrationForm');
+    const tableBody = document.querySelector('#attendeeList tbody');
 
-    tsParticles.load("tsparticles", {
-      fullScreen: { enable: false },
-      particles: {
-        number: { value: 80 },
-        color: { value: ["#6366f1", "#9333ea"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        move: {
-          enable: true,
-          speed: 1,
-          direction: "none",
-          outMode: "bounce"
-        }
-      },
-      interactivity: {
-        events: { onHover: { enable: true, mode: "repulse" } },
-        modes: { repulse: { distance: 100, duration: 0.4 } }
-      }
-    });
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    const quotes = [
-      "L'intelligence artificielle, c'est l'art d'enseigner aux machines à rêver.",
-      "Ce n'est pas la technologie qui change le monde, c'est ce qu'on en fait.",
-      "L'IA ne remplace pas l'humain, elle l'amplifie.",
-      "Chaque donnée est une opportunité d'apprendre.",
-      "Bienvenue dans l'ère de la pensée augmentée."
-    ];
-    document.getElementById("ai-quote").textContent = quotes[Math.floor(Math.random() * quotes.length)];
+      const prenom = document.getElementById('prenom').value;
+      const nom = document.getElementById('nom').value;
+      const email = document.getElementById('email').value;
+      const promo = document.getElementById('promo').value;
 
-    // Commandes IA personnalisées :
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "/") {
-        let cmd = prompt("Commande AI > Tape /analyse, /init, /glow :");
-        if (cmd === "/analyse") {
-          alert("Analyse cognitive lancée... Résultat : 98.7% de corrélation contextuelle.");
-        } else if (cmd === "/init") {
-          document.body.style.filter = "hue-rotate(200deg) brightness(120%)";
-          setTimeout(() => document.body.style.filter = "none", 3000);
-        } else if (cmd === "/glow") {
-          alert("Mode IA lumineux simulé 🔮");
-        }
-      }
-    });
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${prenom}</td><td>${nom}</td><td>${email}</td><td>${promo}</td>`;
 
-    // Scroll holographique
-    const sections = document.querySelectorAll("section");
-    window.addEventListener("scroll", () => {
-      sections.forEach(sec => {
-        const pos = sec.getBoundingClientRect().top;
-        const win = window.innerHeight;
-        if (pos < win) {
-          sec.style.transform = "scale(1.01) skewY(-1deg) rotateX(1deg)";
-          sec.style.transition = "all 0.5s ease-out";
-        } else {
-          sec.style.transform = "none";
-        }
-      });
+      tableBody.appendChild(row);
+
+      form.reset();
     });
   </script>
 </body>
